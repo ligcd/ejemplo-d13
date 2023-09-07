@@ -7,9 +7,26 @@
 </head>
 <body>
    <h1> FORMULARIO DE CONTACTOS </h1>
-   <form action =" " method="POST"> 
+   <h3>
+    {{$tipo}}
+   </h3>
+   <form action ="validar-contacto" method="POST"> 
+    @csrf 
     <label for="correo"> Correo </label><br> 
-    
-
+    <input 
+    type="email" 
+    name="correo"
+    @if($tipo == 'alumno')
+      value="@alumnos.udg.mx"
+    @else
+      value="@gmail.com"
+    @endif
+    >
+    <br>
+    <label for="comentario">Comentario</label><br> 
+    <textarea name="comentario" cols="30" ross="10">  
+    </textarea><br> 
+    <input type="submit" value="enviar"> 
+</form>
 </body>
 </html>
