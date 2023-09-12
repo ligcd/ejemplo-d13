@@ -1,7 +1,7 @@
 <?php
 
-use App\Models\Contacto;   
-use Illuminate\Http\Request;
+
+use App\Http\Controllers\SitioController;
 use Illuminate\Support\Facades\Route;
 /*
 |--------------------------------------------------------------------------
@@ -18,19 +18,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/contacto/{tipo?}', function ($tipo = null) {
-    //existe $tipo
-    //dd($tipo);
-    return view('contacto', compact('tipo'));
-    //->with(['tipo' -> $tipo]);
-});
+Route::get('/contacto/{tipo?}', [SitioController::class, 'contactoForm']);
+Route::post('/validar-contacto', [SitioControllerntroller::class, 'contactoSave']);
 
-Route::post('/validar-contacto', function (Request $request) {
-    $contacto = new Contacto();
-    $contacto->correo = $request->correo; 
-    $contacto->comentario = $request->comentario;
-    $contacto->save();
-    return redirect()->back();
-//Queremos asignarle atributos que van a corresponder con las columnas de la tabla
-});
 
